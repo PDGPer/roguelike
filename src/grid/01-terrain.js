@@ -18,7 +18,7 @@ function terrainObject(row, col) {
     col,
     rgb: randomTerrainRGB(),
     type: 'terrain',
-    crossable: false,
+    crossable: true,
   }
 }
 

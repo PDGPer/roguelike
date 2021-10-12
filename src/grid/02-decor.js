@@ -18,7 +18,7 @@ function decorObject(row, col) {
     col,
     rgb: randomDecorRGB(),
     type: 'decor',
-    crossable: false,
+    crossable: true,
   }
 }
 
@@ -27,13 +27,13 @@ function decorObject(row, col) {
 // the higher the chance of greenery.
 export function gridDecorPass(grid) {
   return grid.map((row, rowIndex) => 
-    row.map((tile, tileIndex) => {
+    row.map((tile, colIndex) => {
       if(rowIndex < 11 && Math.random() < 0.1) {
-        return decorObject(rowIndex, tileIndex)
+        return decorObject(rowIndex, colIndex)
       } else if (rowIndex < 21 && rowIndex > 10 && Math.random() < 0.4) {
-        return decorObject(rowIndex, tileIndex)
+        return decorObject(rowIndex, colIndex)
       } else if (rowIndex < 31 && rowIndex > 20 && Math.random() < 0.7) {
-        return decorObject(rowIndex, tileIndex)
+        return decorObject(rowIndex, colIndex)
       } else {
         return tile
       }

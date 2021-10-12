@@ -1,15 +1,14 @@
 import React, {/*useState*/} from 'react'
 import ReactDOM from 'react-dom'
-import {createTerrainGrid, TerrainTile} from './grid/01-terrain'
-import {gridDecorPass, DecorTile} from './grid/02-decor'
+import { createTerrainGrid, TerrainTile } from './grid/01-terrain'
+import { gridDecorPass, DecorTile } from './grid/02-decor'
+import { createObstacleAnchorGrid, expandObstaclesAroundAnchors, gridObstaclePass, ObstacleTile } from './grid/03-obstacles'
 import "./style.css"
 
 // A small utility function to keep the Terrain component tidy
 // and make it easier to plug in or out a terrain generation pass.
 function gridMaker() {
-  return gridDecorPass(
-    createTerrainGrid()
-  )
+  return gridObstaclePass(gridDecorPass(createTerrainGrid()), expandObstaclesAroundAnchors(createObstacleAnchorGrid()))
 }
 
 // The terrain component processes the finished grid
@@ -35,6 +34,13 @@ const Terrain = () => {
           } else if (tile.type === 'decor') {
             return (
               <DecorTile
+                key={tile.row.toString() + tile.col.toString()}
+                rgb={tile.rgb}
+              />
+            )
+          } else if (tile.type === 'obstacle') {
+            return (
+              <ObstacleTile
                 key={tile.row.toString() + tile.col.toString()}
                 rgb={tile.rgb}
               />
