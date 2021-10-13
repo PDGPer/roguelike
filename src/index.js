@@ -4,12 +4,13 @@ import { colNum, rowNum } from './config'
 import { createTerrainGrid, TerrainTile } from './grid/01-terrain'
 import { gridDecorPass, DecorTile } from './grid/02-decor'
 import { createObstacleAnchorGrid, expandObstaclesAroundAnchors, gridObstaclePass, ObstacleTile } from './grid/03-obstacles'
+import { gridBordersPass } from './grid/04-borders'
 import "./style.css"
 
 // A small utility function to keep the Terrain component tidy
 // and make it easier to plug in or out a terrain generation pass.
 function gridMaker() {
-  return gridObstaclePass(gridDecorPass(createTerrainGrid(rowNum, colNum), rowNum), expandObstaclesAroundAnchors(createObstacleAnchorGrid(rowNum, colNum)))
+  return gridBordersPass(gridObstaclePass(gridDecorPass(createTerrainGrid(rowNum, colNum), rowNum), expandObstaclesAroundAnchors(createObstacleAnchorGrid(rowNum, colNum))))
 }
 
 // The terrain component processes the finished grid

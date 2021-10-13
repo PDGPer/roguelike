@@ -1,2 +1,2 @@
-export const rowNum = 20
-export const colNum = 11
+export const rowNum = 50
+export const colNum = 20

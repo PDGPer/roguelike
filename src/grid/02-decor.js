@@ -28,13 +28,13 @@ function decorObject(row, col) {
 export function gridDecorPass(grid, rowNum) {
   return grid.map((row, rowIndex) => 
     row.map((tile, colIndex) => {
-      // Chance for spawn on top third: 10%
+      // Chance for spawn on top third: 10%.
       if(rowIndex < Math.round(rowNum / 3) && Math.random() < 0.1) {
         return decorObject(rowIndex, colIndex)
-      // Chance for spawn on middle third: 40%
+      // Chance for spawn on middle third: 40%.
       } else if (rowIndex < Math.round(rowNum / 3) * 2 + 1 && rowIndex > Math.round(rowNum / 3) - 1 && Math.random() < 0.4) {
         return decorObject(rowIndex, colIndex)
-      // Chance for spawn on lower third: 70%
+      // Chance for spawn on lower third: 70%.
       } else if (rowIndex < rowNum + 1 && rowIndex > Math.round(rowNum / 3) * 2 && Math.random() < 0.7) {
         return decorObject(rowIndex, colIndex)
       } else {
