@@ -25,14 +25,17 @@ function decorObject(row, col) {
 // Takes the original terrain grid and sprinkles in
 // some decor tiles. The lower down on the grid,
 // the higher the chance of greenery.
-export function gridDecorPass(grid) {
+export function gridDecorPass(grid, rowNum) {
   return grid.map((row, rowIndex) => 
     row.map((tile, colIndex) => {
-      if(rowIndex < 11 && Math.random() < 0.1) {
+      // Chance for spawn on top third: 10%
+      if(rowIndex < Math.round(rowNum / 3) && Math.random() < 0.1) {
         return decorObject(rowIndex, colIndex)
-      } else if (rowIndex < 21 && rowIndex > 10 && Math.random() < 0.4) {
+      // Chance for spawn on middle third: 40%
+      } else if (rowIndex < Math.round(rowNum / 3) * 2 + 1 && rowIndex > Math.round(rowNum / 3) - 1 && Math.random() < 0.4) {
         return decorObject(rowIndex, colIndex)
-      } else if (rowIndex < 31 && rowIndex > 20 && Math.random() < 0.7) {
+      // Chance for spawn on lower third: 70%
+      } else if (rowIndex < rowNum + 1 && rowIndex > Math.round(rowNum / 3) * 2 && Math.random() < 0.7) {
         return decorObject(rowIndex, colIndex)
       } else {
         return tile

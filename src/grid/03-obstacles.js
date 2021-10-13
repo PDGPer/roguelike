@@ -25,13 +25,13 @@ function obstacleObject(row, col) {
 // Creates the first pass of the obstacle grid.
 // Basically a grid of the same size as the original but there 
 // is a small chance for each tile to become an obstacle.
-export function createObstacleAnchorGrid() {
+export function createObstacleAnchorGrid(rowNum, colNum) {
   let array = []
   const grid = []
   
-  for (let row = 0; row < 30; row++) {
+  for (let row = 0; row < rowNum; row++) {
     array = []
-    for (let col = 0; col < 11; col++) {
+    for (let col = 0; col < colNum; col++) {
       // Chance is defined here. Currently 5%.
       if (Math.random() < 0.05) {
         array.push(true)

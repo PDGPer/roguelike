@@ -23,13 +23,13 @@ function terrainObject(row, col) {
 }
 
 // Creates the terrain array grid; the first pass of the terrain.
-export function createTerrainGrid() {
+export function createTerrainGrid(rowNum, colNum) {
   let array = []
   const grid = []
   
-  for (let row = 0; row < 30; row++) {
+  for (let row = 0; row < rowNum; row++) {
     array = []
-    for (let col = 0; col < 11; col++) {
+    for (let col = 0; col < colNum; col++) {
       array.push(terrainObject(row, col))
     }
     grid.push(array)
