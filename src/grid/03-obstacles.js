@@ -36,8 +36,8 @@ export function createObstacleAnchorGrid(rowNum, colNum) {
   for (let row = 0; row < rowNum; row++) {
     array = []
     for (let col = 0; col < colNum; col++) {
-      // Chance is defined here. Currently 5%.
-      if (Math.random() < 0.05) {
+      // Chance is defined here. Currently 3%.
+      if (Math.random() < 0.03) {
         array.push(true)
       } else {
         array.push(false)

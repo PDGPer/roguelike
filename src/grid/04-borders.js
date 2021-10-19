@@ -33,13 +33,13 @@ export function gridBordersPass(grid) {
   // if substituted, does the same for the next tile, and so on.
   // The others side are processed simmilarly.
   for (let row = 0; row < newGrid.length; row++) {
-    // Closest to the left: 60% chance.
+    // Closest to the left.
     if (Math.random() < highChance) {
       newGrid[row][0] = obstacleObject(row, 0)
-      // To its right: 40%.
+      // To its right.
       if (Math.random() < mediumChance) {
         newGrid[row][1] = obstacleObject(row, 1)
-        // To its right: 20%.
+        // To its right.
         if (Math.random() < lowChance) {
           newGrid[row][2] = obstacleObject(row, 2)
         }
@@ -49,13 +49,13 @@ export function gridBordersPass(grid) {
 
   // Right side.
   for (let row = 0; row < newGrid.length; row++) {
-    // Closest to the right: 60% chance.
+    // Closest to the right.
     if (Math.random() < highChance) {
       newGrid[row][lastCol] = obstacleObject(row, lastCol)
-      // To its left: 40% chance.
+      // To its left.
       if (Math.random() < mediumChance) {
         newGrid[row][lastCol - 1] = obstacleObject(row, lastCol - 1)
-        // To its left: 20% chance.
+        // To its left.
         if (Math.random() < lowChance) {
           newGrid[row][lastCol - 2] = obstacleObject(row, lastCol - 2)
         }
@@ -65,13 +65,13 @@ export function gridBordersPass(grid) {
 
   // Top side.
   for (let col = 0; col < lastCol + 1; col++) {
-    // Closest to the top: 60% chance.
+    // Closest to the top.
     if (Math.random() < highChance) {
       newGrid[0][col] = obstacleObject(0, col)
-      // Below it: 40% chance.
+      // Below it.
       if (Math.random() < mediumChance) {
         newGrid[1][col] = obstacleObject(1, col)
-        // Below it: 20% chance.
+        // Below it.
         if (Math.random() < lowChance) {
           newGrid[2][col] = obstacleObject(2, col)
         }
@@ -81,13 +81,13 @@ export function gridBordersPass(grid) {
 
   // Bottom side.
   for (let col = 0; col < lastCol + 1; col++) {
-    // Closest to the bottom: 60% chance.
+    // Closest to the bottom.
     if (Math.random() < highChance) {
       newGrid[grid.length - 1][col] = obstacleObject(grid.length - 1, col)
-      // Above it: 40% chance.
+      // Above it.
       if (Math.random() < mediumChance) {
         newGrid[grid.length - 2][col] = obstacleObject(grid.length - 2, col)
-        // Above it: 20% chance.
+        // Above it.
         if (Math.random() < lowChance) {
           newGrid[grid.length - 3][col] = obstacleObject(grid.length - 3, col)
         }
