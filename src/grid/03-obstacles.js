@@ -20,7 +20,7 @@ function obstacleObject(row, col) {
     col,
     // RGB is a fixed value that corresponds to the
     // body background RGB (looks like lakes / rivers).
-    rgb: 'rgb(119, 183, 235)',
+    rgb: 'rgba (255, 255, 255, 1)',
     type: 'obstacle',
     crossable: false,
   }

@@ -1,6 +1,30 @@
 body {
-  background-color: rgb(119, 183, 235);
+  background-color: rgb(146, 199, 243);
   width: 100%;
   height: 100%;
   margin: 0;
+}
+
+#wave {
+  top: 0;
+  right: 0;
+  position: fixed;
+  overflow: hidden;
+  width: 0;
+  height: 120vh;
+  background-color: rgb(146, 199, 243);
+  z-index: -1;
+  animation: wave 15s infinite;
+  transform: rotate(5deg);
+}
+
+@keyframes wave {
+  0% {
+    background-color: rgb(72, 155, 223);
+    width: 0vw;
+  }
+  100% {
+    background-color: rgb(146, 199, 243);
+    width: 100vw;
+  }
 }

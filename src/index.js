@@ -71,6 +71,8 @@ const App = () => {
 
   return (
     <div>
+      {/* Decorative background wave */}
+      <div id='wave'></div>
       <Terrain />
     </div>
   )
