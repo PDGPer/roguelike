@@ -121,68 +121,68 @@ export function gridEnemiesPass(grid) {
 // Weaker enemies use brighter colors and vice-versa.
 const Skeleton = ({rgb}) => {
 
-  const skeletonRGB = 'white'
+  const enemyRGB = 'white'
 
   return (
     <div style={{width: 30, height: 30, backgroundColor: rgb}}>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '90%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '90%', height: '100%', backgroundColor: enemyRGB}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '100%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '100%', height: '100%', backgroundColor: enemyRGB}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '20%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '30%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '30%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '10%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '30%', height: '100%'}}></div>
-        <div style={{width: '20%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '30%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '10%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '30%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '30%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '20%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '100%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '100%', height: '100%', backgroundColor: enemyRGB}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '40%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '40%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '40%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '40%', height: '100%', backgroundColor: enemyRGB}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '90%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '90%', height: '100%', backgroundColor: enemyRGB}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '30%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: skeletonRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '20%', height: '100%'}}></div>
       </div>
     </div>
@@ -191,74 +191,74 @@ const Skeleton = ({rgb}) => {
 
 const Crabman = ({rgb}) => {
 
-  const crabmanRGB = 'rgb(200, 15, 50)'
+  const enemyRGB = 'rgb(200, 15, 50)'
 
   return (
     <div style={{width: 30, height: 30, backgroundColor: rgb}}>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '30%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '30%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '30%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '30%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: crabmanRGB}}></div>
-        <div style={{width: '10%', height: '100%'}}></div>
-      </div>
-      <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: crabmanRGB}}></div>
-        <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '40%', height: '100%', backgroundColor: crabmanRGB}}></div>
-        <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '20%', height: '100%', backgroundColor: crabmanRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '40%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '20%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '40%', height: '100%', backgroundColor: enemyRGB}}></div>
+        <div style={{width: '10%', height: '100%'}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
+        <div style={{width: '10%', height: '100%'}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '100%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
+        <div style={{width: '10%', height: '100%'}}></div>
+        <div style={{width: '40%', height: '100%', backgroundColor: enemyRGB}}></div>
+        <div style={{width: '10%', height: '100%'}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '40%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '100%', height: '100%', backgroundColor: enemyRGB}}></div>
+      </div>
+      <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
+        <div style={{width: '40%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '40%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '40%', height: '100%', backgroundColor: enemyRGB}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '40%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '40%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '40%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '40%', height: '100%', backgroundColor: enemyRGB}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '40%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '40%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '40%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '40%', height: '100%', backgroundColor: enemyRGB}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '30%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '30%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '40%', height: '100%'}}></div>
-        <div style={{width: '30%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '30%', height: '100%', backgroundColor: enemyRGB}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '20%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '20%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '20%', height: '100%', backgroundColor: crabmanRGB}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
       </div>
     </div>
@@ -267,70 +267,70 @@ const Crabman = ({rgb}) => {
 
 const Pirate = ({rgb}) => {
 
-  const pirateRGB = 'rgb(86, 15, 50)'
+  const enemyRGB = 'rgb(86, 15, 50)'
 
   return (
     <div style={{width: 30, height: 30, backgroundColor: rgb}}>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '50%', height: '100%', backgroundColor: pirateRGB}}></div>
+        <div style={{width: '50%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '30%', height: '100%'}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '70%', height: '100%', backgroundColor: pirateRGB}}></div>
+        <div style={{width: '70%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: pirateRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '70%', height: '100%'}}></div>
-        <div style={{width: '20%', height: '100%', backgroundColor: pirateRGB}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '60%', height: '100%', backgroundColor: pirateRGB}}></div>
+        <div style={{width: '60%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: pirateRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: pirateRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '30%', height: '100%', backgroundColor: pirateRGB}}></div>
+        <div style={{width: '30%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: pirateRGB}}></div>
-        <div style={{width: '20%', height: '100%'}}></div>
-      </div>
-      <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '30%', height: '100%', backgroundColor: pirateRGB}}></div>
-        <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '40%', height: '100%', backgroundColor: pirateRGB}}></div>
-        <div style={{width: '10%', height: '100%'}}></div>
-      </div>
-      <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '20%', height: '100%', backgroundColor: pirateRGB}}></div>
-        <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '40%', height: '100%', backgroundColor: pirateRGB}}></div>
-        <div style={{width: '10%', height: '100%'}}></div>
-      </div>
-      <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '70%', height: '100%', backgroundColor: pirateRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '20%', height: '100%'}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '20%', height: '100%', backgroundColor: pirateRGB}}></div>
+        <div style={{width: '30%', height: '100%', backgroundColor: enemyRGB}}></div>
+        <div style={{width: '10%', height: '100%'}}></div>
+        <div style={{width: '40%', height: '100%', backgroundColor: enemyRGB}}></div>
+        <div style={{width: '10%', height: '100%'}}></div>
+      </div>
+      <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
+        <div style={{width: '10%', height: '100%'}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
+        <div style={{width: '20%', height: '100%'}}></div>
+        <div style={{width: '40%', height: '100%', backgroundColor: enemyRGB}}></div>
+        <div style={{width: '10%', height: '100%'}}></div>
+      </div>
+      <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
+        <div style={{width: '10%', height: '100%'}}></div>
+        <div style={{width: '70%', height: '100%', backgroundColor: enemyRGB}}></div>
+        <div style={{width: '20%', height: '100%'}}></div>
+      </div>
+      <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
+        <div style={{width: '10%', height: '100%'}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '30%', height: '100%'}}></div>
-        <div style={{width: '20%', height: '100%', backgroundColor: pirateRGB}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '20%', height: '100%'}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '50%', height: '100%', backgroundColor: pirateRGB}}></div>
+        <div style={{width: '50%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '30%', height: '100%'}}></div>
       </div>
     </div>
@@ -339,77 +339,77 @@ const Pirate = ({rgb}) => {
 
 const Captain = ({rgb}) => {
 
-   const captainRGB = 'black'
+   const enemyRGB = 'black'
 
   return (
     <div style={{width: 30, height: 30, backgroundColor: rgb}}>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '50%', height: '100%', backgroundColor: captainRGB}}></div>
+        <div style={{width: '50%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: captainRGB}}></div>
-        <div style={{width: '10%', height: '100%'}}></div>
-      </div>
-      <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '70%', height: '100%', backgroundColor: captainRGB}}></div>
-        <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: captainRGB}}></div>
-      </div>
-      <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: captainRGB}}></div>
-        <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '20%', height: '100%', backgroundColor: captainRGB}}></div>
-        <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '20%', height: '100%', backgroundColor: captainRGB}}></div>
-        <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: captainRGB}}></div>
-      </div>
-      <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '60%', height: '100%', backgroundColor: captainRGB}}></div>
-        <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: captainRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '10%', height: '100%', backgroundColor: captainRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: captainRGB}}></div>
+        <div style={{width: '70%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '20%', height: '100%', backgroundColor: captainRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
+      </div>
+      <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
+        <div style={{width: '10%', height: '100%'}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
+        <div style={{width: '10%', height: '100%'}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
+        <div style={{width: '10%', height: '100%'}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
+        <div style={{width: '10%', height: '100%'}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
+      </div>
+      <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
+        <div style={{width: '10%', height: '100%'}}></div>
+        <div style={{width: '60%', height: '100%', backgroundColor: enemyRGB}}></div>
+        <div style={{width: '10%', height: '100%'}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
+        <div style={{width: '10%', height: '100%'}}></div>
+      </div>
+      <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
+        <div style={{width: '10%', height: '100%'}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
+        <div style={{width: '10%', height: '100%'}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '10%', height: '100%', backgroundColor: captainRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '10%', height: '100%', backgroundColor: captainRGB}}></div>
+        <div style={{width: '10%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '40%', height: '100%', backgroundColor: captainRGB}}></div>
+        <div style={{width: '40%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '20%', height: '100%', backgroundColor: captainRGB}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '10%', height: '100%'}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
-        <div style={{width: '20%', height: '100%', backgroundColor: captainRGB}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '40%', height: '100%'}}></div>
-        <div style={{width: '20%', height: '100%', backgroundColor: captainRGB}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '20%', height: '100%'}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '10%', height: '100%'}}></div>
-        <div style={{width: '60%', height: '100%', backgroundColor: captainRGB}}></div>
+        <div style={{width: '60%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '30%', height: '100%'}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '20%', height: '100%'}}></div>
-        <div style={{width: '40%', height: '100%', backgroundColor: captainRGB}}></div>
+        <div style={{width: '40%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '40%', height: '100%'}}></div>
       </div>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '30%', height: '100%'}}></div>
-        <div style={{width: '20%', height: '100%', backgroundColor: captainRGB}}></div>
+        <div style={{width: '20%', height: '100%', backgroundColor: enemyRGB}}></div>
         <div style={{width: '50%', height: '100%'}}></div>
       </div>
     </div>

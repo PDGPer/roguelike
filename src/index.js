@@ -6,6 +6,8 @@ import { gridDecorPass, DecorTile } from './grid/02-decor'
 import { createObstacleAnchorGrid, expandObstaclesAroundAnchors, gridObstaclePass, ObstacleTile } from './grid/03-obstacles'
 import { gridBordersPass } from './grid/04-borders'
 import { gridEnemiesPass, EnemyTile } from './grid/05-enemies'
+import { DefaultProjectile, DefaultMelee, DefaultClothing, SkeletonProjectile, SkeletonMelee, SkeletonClothing, CrabmanProjectile, CrabmanMelee, CrabmanClothing, PirateProjectile, PirateMelee, PirateClothing, HealthPotion } from './assets/items'
+import { Player } from './assets/player'
 import "./style.css"
 
 // A small utility function to keep the Terrain component tidy
@@ -14,8 +16,8 @@ function gridMaker() {
   return gridEnemiesPass(gridBordersPass(gridObstaclePass(gridDecorPass(createTerrainGrid(rowNum, colNum), rowNum), expandObstaclesAroundAnchors(createObstacleAnchorGrid(rowNum, colNum)))))
 }
 
-// The terrain component processes the finished grid
-// into its graphical version.
+// The terrain component processes the finished
+// grid into its graphical equivalent.
 const Terrain = () => {
   return (
     gridMaker().map((row, rowIndex) =>
@@ -71,8 +73,6 @@ const App = () => {
 
   return (
     <div>
-      {/* Decorative background wave */}
-      <div id='wave'></div>
       <Terrain />
     </div>
   )

@@ -1,16 +1,3 @@
-// Creates a random RGB value for the obstacle tiles.
-// Darker version of original terrain tiles.
-/* Currently unnused.
-function randomObstacleRGB() {
-  let rgb = [
-    Math.floor(Math.random() * 20) + 138,
-    Math.floor(Math.random() * 20) + 58,
-    Math.floor(Math.random() * 20) + 0
-  ]
-  return 'rgb('+rgb.join(', ')+')'
-}
-*/
-
 // Creates an obstacle object to insert into the terrain grid.
 // Keeps track of its position, RGB, tile type and 
 // if it is crossable by the player.
