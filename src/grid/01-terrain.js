@@ -12,11 +12,11 @@ function randomTerrainRGB() {
 // Creates a terrain object to insert into the terrain grid.
 // Keeps track of its position, RGB, tile type and 
 // if it is crossable by the player.
-function terrainObject(row, col) {
+export function terrainObject(row, col, rgb) {
   return {
     row,
     col,
-    rgb: randomTerrainRGB(),
+    rgb,
     type: 'terrain',
     crossable: true,
   }
@@ -30,7 +30,7 @@ export function createTerrainGrid(rowNum, colNum) {
   for (let row = 0; row < rowNum; row++) {
     array = []
     for (let col = 0; col < colNum; col++) {
-      array.push(terrainObject(row, col))
+      array.push(terrainObject(row, col, randomTerrainRGB()))
     }
     grid.push(array)
   }

@@ -1,79 +1,124 @@
-import React, {/*useState*/} from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import { colNum, rowNum } from './config'
-import { createTerrainGrid, TerrainTile } from './grid/01-terrain'
-import { gridDecorPass, DecorTile } from './grid/02-decor'
-import { createObstacleAnchorGrid, expandObstaclesAroundAnchors, gridObstaclePass, ObstacleTile } from './grid/03-obstacles'
-import { gridBordersPass } from './grid/04-borders'
-import { gridEnemiesPass, EnemyTile } from './grid/05-enemies'
-import { DefaultProjectile, DefaultMelee, DefaultClothing, SkeletonProjectile, SkeletonMelee, SkeletonClothing, CrabmanProjectile, CrabmanMelee, CrabmanClothing, PirateProjectile, PirateMelee, PirateClothing, HealthPotion } from './assets/items'
-import { Player } from './assets/player'
-import "./style.css"
+import { terrainObject } from './grid/01-terrain'
+import { playerObject } from './grid/06-player'
+import { gridMaker } from './grid/terrainComponent'
+import { Terrain } from './grid/terrainComponent'
+import './style.css'
 
-// A small utility function to keep the Terrain component tidy
-// and make it easier to plug in or out a terrain generation pass.
-function gridMaker() {
-  return gridEnemiesPass(gridBordersPass(gridObstaclePass(gridDecorPass(createTerrainGrid(rowNum, colNum), rowNum), expandObstaclesAroundAnchors(createObstacleAnchorGrid(rowNum, colNum)))))
-}
-
-// The terrain component processes the finished
-// grid into its graphical equivalent.
-const Terrain = () => {
-  return (
-    gridMaker().map((row, rowIndex) =>
-      <div 
-        key={rowIndex.toString()}
-        style={{display: 'flex', flexDirection: 'row'}}
-      >
-        {row.map((tile) => {
-
-          // Depending on the grid object type, the component
-          // assigns different tiles to the graphical grid.
-          if (tile.type === 'terrain') {
-            return (
-              <TerrainTile 
-                key={tile.row.toString() + tile.col.toString()}
-                rgb={tile.rgb}
-              />
-            )
-          } else if (tile.type === 'decor') {
-            return (
-              <DecorTile
-                key={tile.row.toString() + tile.col.toString()}
-                rgb={tile.rgb}
-              />
-            )
-          } else if (tile.type === 'obstacle') {
-            return (
-              <ObstacleTile
-                key={tile.row.toString() + tile.col.toString()}
-                rgb={tile.rgb}
-              />
-            )
-          } else if (tile.type === 'enemy') {
-            return (
-              <EnemyTile 
-                key={tile.row.toString() + tile.col.toString()}
-                rgb={tile.rgb}
-                enemy={tile.enemy}
-              />
-            )
-          }
-          
-          
-          return undefined
-
-        })}
-      </div>
-    )
-  )
+// Finds the player position.
+// Only runs once, to be kept in state.
+function whereIsPlayer(grid) {
+  // Starts at the bottom row, since the player spawns on the lower end.
+  for (let row = grid.length - 1; row >= 0; row--) {
+    for (let col = 0; col < grid[0].length; col++) {
+      if (grid[row][col].type === 'player') {
+        return {row, col}
+      }
+    }
+  }
 }
 
 const App = () => {
 
+  // Initial random grid created by the gridMaker() in the terrainComponent.js
+  const [grid, setGrid] = useState(() => gridMaker())
+  // Initial player position. Used for movement calculations later.
+  const [playerPosition, setPlayerPosition] = useState(() => whereIsPlayer(grid))
+
+  useEffect(() => {
+
+    // Switch cases to recognize WASD key codes from the
+    // event listener below and transmit the movement direction.
+    function playerClickedMove(e) {
+      switch (e.code) {
+        case 'KeyW': playerMove(grid, 'Up', playerPosition)
+        break
+        case 'KeyS': playerMove(grid, 'Down', playerPosition)
+        break
+        case 'KeyA': playerMove(grid, 'Left', playerPosition)
+        break
+        case 'KeyD': playerMove(grid, 'Right', playerPosition)
+        break
+        default:
+      }
+    }
+
+    // Keydown event listeners recognize when player make a click.
+    document.addEventListener('keydown', playerClickedMove)
+    return () => {     
+      document.removeEventListener('keydown', playerClickedMove)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[playerPosition])
+
+  // Uses the current player position from state and the
+  // movement direction to calculate the tile the player
+  // moved into and turn it into a player object. The
+  // abandoned tile is turned into a terrain object.
+  function playerMove(grid, direction, {row, col}) {
+
+    if(direction === 'Up') {
+      // Only happens if the object is crossable (i.e. terrain, decor).
+      if(grid[row - 1][col].crossable) {
+        let newGrid = [...grid]
+        let nextTileRGB = grid[row - 1][col].rgb
+        let abandonedTileRGB = grid[row][col].rgb
+        newGrid[row - 1][col] = playerObject(row - 1, col, nextTileRGB)
+        newGrid[row][col] = terrainObject(row, col, abandonedTileRGB)
+
+        // Modified grid is sent into state.
+        setGrid(newGrid)
+        // Player position in state is updated.
+        setPlayerPosition({row: row - 1, col})
+      }
+    }
+  
+    if(direction === 'Down') {
+      if(grid[row + 1][col].crossable) {
+        let newGrid = [...grid]
+        let nextTileRGB = grid[row + 1][col].rgb
+        let abandonedTileRGB = grid[row][col].rgb
+        newGrid[row + 1][col] = playerObject(row + 1, col, nextTileRGB)
+        newGrid[row][col] = terrainObject(row, col, abandonedTileRGB)
+
+        setGrid(newGrid)
+        setPlayerPosition({row: row + 1, col})
+      }
+    }
+  
+    if(direction === 'Left') {
+      if(grid[row][col - 1].crossable) {
+        let newGrid = [...grid]
+        let nextTileRGB = grid[row][col - 1].rgb
+        let abandonedTileRGB = grid[row][col].rgb
+        newGrid[row][col - 1] = playerObject(row, col - 1, nextTileRGB)
+        newGrid[row][col] = terrainObject(row, col, abandonedTileRGB)
+
+        setGrid(newGrid)
+        setPlayerPosition({row, col: col - 1})
+      }
+    }
+  
+    if(direction === 'Right') {
+      if(grid[row][col + 1].crossable) {
+        let newGrid = [...grid]
+        let nextTileRGB = grid[row][col + 1].rgb
+        let abandonedTileRGB = grid[row][col].rgb
+        newGrid[row][col + 1] = playerObject(row, col + 1, nextTileRGB)
+        newGrid[row][col] = terrainObject(row, col, abandonedTileRGB)
+
+        setGrid(newGrid)
+        setPlayerPosition({row, col: col + 1})
+      }
+    }
+  }
+
   return (
     <div>
-      <Terrain />
+      <Terrain
+        grid={grid}
+      />
     </div>
   )
 }

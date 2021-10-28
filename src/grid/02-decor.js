@@ -12,11 +12,11 @@ function randomDecorRGB() {
 // Creates a decor object to insert into the terrain grid.
 // Keeps track of its position, RGB, tile type and 
 // if it is crossable by the player.
-function decorObject(row, col) {
+function decorObject(row, col, rgb) {
   return {
     row,
     col,
-    rgb: randomDecorRGB(),
+    rgb,
     type: 'decor',
     crossable: true,
   }
@@ -30,13 +30,13 @@ export function gridDecorPass(grid, rowNum) {
     row.map((tile, colIndex) => {
       // Chance for spawn on top third: 10%.
       if(rowIndex < Math.round(rowNum / 3) && Math.random() < 0.1) {
-        return decorObject(rowIndex, colIndex)
+        return decorObject(rowIndex, colIndex, randomDecorRGB())
       // Chance for spawn on middle third: 40%.
       } else if (rowIndex < Math.round(rowNum / 3) * 2 + 1 && rowIndex > Math.round(rowNum / 3) - 1 && Math.random() < 0.4) {
-        return decorObject(rowIndex, colIndex)
+        return decorObject(rowIndex, colIndex, randomDecorRGB())
       // Chance for spawn on lower third: 70%.
       } else if (rowIndex < rowNum + 1 && rowIndex > Math.round(rowNum / 3) * 2 && Math.random() < 0.7) {
-        return decorObject(rowIndex, colIndex)
+        return decorObject(rowIndex, colIndex, randomDecorRGB())
       } else {
         return tile
       }
