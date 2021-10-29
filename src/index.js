@@ -61,11 +61,16 @@ const App = () => {
     if(direction === 'Up') {
       // Only happens if the object is crossable (i.e. terrain, decor).
       if(grid[row - 1][col].crossable) {
-        let newGrid = [...grid]
-        let nextTileRGB = grid[row - 1][col].rgb
-        let abandonedTileRGB = grid[row][col].rgb
-        newGrid[row - 1][col] = playerObject(row - 1, col, nextTileRGB)
-        newGrid[row][col] = terrainObject(row, col, abandonedTileRGB)
+
+        let newGrid = grid.map((gridRow) => gridRow.map((tile) => {
+          if(tile.row === row - 1 && tile.col === col) {
+            return playerObject(row - 1, col, tile.rgb)
+          } else if (tile.row === row && tile.col === col) {
+            return terrainObject(row, col, tile.rgb)
+          } else {
+            return tile
+          }
+        }))
 
         // Modified grid is sent into state.
         setGrid(newGrid)
@@ -76,11 +81,15 @@ const App = () => {
   
     if(direction === 'Down') {
       if(grid[row + 1][col].crossable) {
-        let newGrid = [...grid]
-        let nextTileRGB = grid[row + 1][col].rgb
-        let abandonedTileRGB = grid[row][col].rgb
-        newGrid[row + 1][col] = playerObject(row + 1, col, nextTileRGB)
-        newGrid[row][col] = terrainObject(row, col, abandonedTileRGB)
+        let newGrid = grid.map((gridRow) => gridRow.map((tile) => {
+          if(tile.row === row + 1 && tile.col === col) {
+            return playerObject(row + 1, col, tile.rgb)
+          } else if (tile.row === row && tile.col === col) {
+            return terrainObject(row, col, tile.rgb)
+          } else {
+            return tile
+          }
+        }))
 
         setGrid(newGrid)
         setPlayerPosition({row: row + 1, col})
@@ -89,11 +98,15 @@ const App = () => {
   
     if(direction === 'Left') {
       if(grid[row][col - 1].crossable) {
-        let newGrid = [...grid]
-        let nextTileRGB = grid[row][col - 1].rgb
-        let abandonedTileRGB = grid[row][col].rgb
-        newGrid[row][col - 1] = playerObject(row, col - 1, nextTileRGB)
-        newGrid[row][col] = terrainObject(row, col, abandonedTileRGB)
+        let newGrid = grid.map((gridRow) => gridRow.map((tile) => {
+          if(tile.row === row && tile.col === col - 1) {
+            return playerObject(row, col - 1, tile.rgb)
+          } else if (tile.row === row && tile.col === col) {
+            return terrainObject(row, col, tile.rgb)
+          } else {
+            return tile
+          }
+        }))
 
         setGrid(newGrid)
         setPlayerPosition({row, col: col - 1})
@@ -102,11 +115,15 @@ const App = () => {
   
     if(direction === 'Right') {
       if(grid[row][col + 1].crossable) {
-        let newGrid = [...grid]
-        let nextTileRGB = grid[row][col + 1].rgb
-        let abandonedTileRGB = grid[row][col].rgb
-        newGrid[row][col + 1] = playerObject(row, col + 1, nextTileRGB)
-        newGrid[row][col] = terrainObject(row, col, abandonedTileRGB)
+        let newGrid = grid.map((gridRow) => gridRow.map((tile) => {
+          if(tile.row === row && tile.col === col + 1) {
+            return playerObject(row, col + 1, tile.rgb)
+          } else if (tile.row === row && tile.col === col) {
+            return terrainObject(row, col, tile.rgb)
+          } else {
+            return tile
+          }
+        }))
 
         setGrid(newGrid)
         setPlayerPosition({row, col: col + 1})
