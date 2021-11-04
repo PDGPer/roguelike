@@ -8,7 +8,7 @@ import './style.css'
 
 const UI = ({playerHP, playerMaxHP, flavorText}) => {
   return (
-    <div style={{backgroundColor: 'white', width: 200, margin: '30px', height: '90vh'}}>
+    <div style={{backgroundColor: 'white', width: 200, margin: '30px', height: '90vh', position: 'fixed'}}>
       <p>Player HP: {playerHP} of {playerMaxHP}</p>
       <p>{flavorText}</p>
     </div>
@@ -40,8 +40,12 @@ const App = () => {
   const [playerMaxHP, setPlayerMaxHP] = useState(10)
   const [playerDamage, setPlayerDamage] = useState(5)
 
-  // Enemy messages
-  const [flavorText, setFlavorText] = useState('You awake, weak and unarmed. Your old foe is here... somewhere. Grow stronger and end this.')
+  // Messages displayed in the UI when fighting or defeating enemies
+  const [flavorText, setFlavorText] = useState('You awake, weak and unarmed. Your old foe is here... somewhere. Prepare yourself and end this, at long last.')
+
+  // Used for the movement useEffect to trigger renders in situations
+  // where the player hasn't moved (like defeating an enemy).
+  const [clearTile, setClearTile] = useState(0)
 
   useEffect(() => {
 
@@ -67,7 +71,7 @@ const App = () => {
       document.removeEventListener('keydown', playerClickedMove)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[playerPosition])
+  }, [playerPosition, clearTile])
 
   // Uses the current player position from state and the
   // movement direction to calculate the tile the player
@@ -90,9 +94,7 @@ const App = () => {
       default:
     }
 
-    console.log(grid[row + x][col + y].crossable)
     if(grid[row + x][col + y].crossable) {
-      console.log('If do movimento')
       let newGrid = grid.map((gridRow) => gridRow.map((tile) => {
         if(tile.row === row + x && tile.col === col + y) {
           return playerObject(row + x, col + y, tile.rgb)
@@ -103,41 +105,19 @@ const App = () => {
         }
       }))
       setGrid(newGrid)
-      return setPlayerPosition({row: row + x, col: col + y})
+      setPlayerPosition({row: row + x, col: col + y})
 
     } else if(grid[row + x][col + y].type === 'enemy' && grid[row + x][col + y].hp - playerDamage <= 0) {
-      
-      /*
       let newGrid = [...grid]
       newGrid[row + x][col + y] = terrainObject(row + x, col + y, newGrid[row + x][col + y].rgb)
-      */
-     
-      console.log('If de substituir inimigo por terreno')
-      /*newGrid.map((gridRow) => gridRow.map((tile) => {
-        if(tile.row === row + x && tile.col === col + y) {
-          return terrainObject(row + x, col + y, tile.rgb)
-        } else {
-          return tile
-        }
-      }))*/
-      console.log(grid)
-      setGrid(prevGrid => prevGrid.map((gridRow) => gridRow.map((tile) => {
-        if(tile.row === (row + x) && tile.col === (col + y)) {
-          console.log(row + x, col + y, tile.rgb)
-          return terrainObject(row + x, col + y, tile.rgb)
-        } else {
-          return tile
-        }
-      })))
-      console.log(grid)
+      setGrid(newGrid)
+      setClearTile(clearTile + 1)
+
 
     } else if(grid[row + x][col + y].type === 'enemy') {
-      console.log('If de danificar inimigo')
       let newGrid = [...grid]
       newGrid[row + x][col + y].hp = newGrid[row + x][col + y].hp - playerDamage
-      return setGrid(newGrid)
-    } else {
-      console.log('Batatas')
+      setGrid(newGrid)
     }
   }
 
@@ -148,7 +128,7 @@ const App = () => {
         playerMaxHP={playerMaxHP}
         flavorText={flavorText}
       />
-      <div style={{margin: '30px 0 30px 0'}}>
+      <div style={{margin: '30px 0 30px 260px'}}>
         <Terrain
           grid={grid}
         />

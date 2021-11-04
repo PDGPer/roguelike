@@ -39,7 +39,7 @@ function pirateObject(row, col, rgb, hp) {
     type: 'enemy',
     enemy: 'pirate',
     flavorText: 'Even if technically human, you know no other thing on this island is able to match their monstruosity.',
-    deathFlavorText: 'The pirate dies with a hateful glare, feeling as if all his future barbarous actions have been stolen from him.',
+    deathFlavorText: 'The pirate dies with a hateful glare, raging that all his future barbarous actions have been stolen from him.',
     crossable: false,
   }
 }
@@ -52,8 +52,8 @@ function captainObject(row, col, rgb, hp) {
     hp,
     type: 'enemy',
     enemy: 'captain',
-    flavorText: '',
-    deathFlavorText: '',
+    flavorText: 'After all this time. Here he is. End him.',
+    deathFlavorText: 'You are free now.',
     crossable: false,
   }
 }

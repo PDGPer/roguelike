@@ -19,7 +19,6 @@ function decorObject(row, col, rgb) {
     rgb,
     type: 'decor',
     crossable: true,
-    enemy: 'decor'
   }
 }
 
