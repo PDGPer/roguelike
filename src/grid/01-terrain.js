@@ -19,6 +19,7 @@ export function terrainObject(row, col, rgb) {
     rgb,
     type: 'terrain',
     crossable: true,
+    enemy: 'terrain'
   }
 }
 

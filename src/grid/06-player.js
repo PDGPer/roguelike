@@ -4,7 +4,6 @@ export function playerObject(row, col, rgb) {
     row,
     col,
     rgb,
-    hp: 10,
     type: 'player',
   }
 }

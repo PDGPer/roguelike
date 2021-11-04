@@ -1,51 +1,59 @@
 // Grid objects representing the enemies.
-function skeletonObject(row, col, rgb) {
+function skeletonObject(row, col, rgb, hp) {
   return {
     row,
     col,
     // RGB value is used for the background color.
     // Passed as props from the original terrain/decor object.
     rgb,
-    hp: 10,
+    hp,
     type: 'enemy',
-    // Enemy key is used to assing graphical components later.
+    // Enemy key is used to assign graphical components later.
     enemy: 'skeleton',
+    flavorText: 'One of the lost souls cursed to wander in thrall of your foe, feeding on the pain he spreads.',
+    deathFlavorText: 'With a pained shudder, the cursed thing is transported to a different hell.',
     crossable: false,
   }
 }
 
-function crabmanObject(row, col, rgb) {
+function crabmanObject(row, col, rgb, hp) {
   return {
     row,
     col,
     rgb,
-    hp: 10,
+    hp,
     type: 'enemy',
     enemy: 'crabman',
+    flavorText: 'An abomination from the depths, your foe employs them cheaply. Some... meat is all they ask for.',
+    deathFlavorText: "As the things' innards burst from its broken shell, you somehow know no other dead thing smells quite like this.",
     crossable: false,
   }
 }
 
-function pirateObject(row, col, rgb) {
+function pirateObject(row, col, rgb, hp) {
   return {
     row,
     col,
     rgb,
-    hp: 10,
+    hp,
     type: 'enemy',
     enemy: 'pirate',
+    flavorText: 'Even if technically human, you know no other thing on this island is able to match their monstruosity.',
+    deathFlavorText: 'The pirate dies with a hateful glare, feeling as if all his future barbarous actions have been stolen from him.',
     crossable: false,
   }
 }
 
-function captainObject(row, col, rgb) {
+function captainObject(row, col, rgb, hp) {
   return {
     row,
     col,
     rgb,
-    hp: 10,
+    hp,
     type: 'enemy',
     enemy: 'captain',
+    flavorText: '',
+    deathFlavorText: '',
     crossable: false,
   }
 }
@@ -53,6 +61,11 @@ function captainObject(row, col, rgb) {
 // Grid is mapped to add enemies, 
 // with different rules for each third.
 export function gridEnemiesPass(grid) {
+
+  let skeletonHP = 10
+  let crabmanHP = 10
+  let pirateHP = 10
+  let captainHP = 10
 
   let newGrid = grid.map((row, rowIndex) => 
     row.map((tile, colIndex) => {
@@ -62,33 +75,33 @@ export function gridEnemiesPass(grid) {
         if (rowIndex > Math.round((grid.length - 1) / 3 * 2)) {
           // Higher chance of spawning a weak enemy.
           if (Math.random() < 0.03) {
-            return skeletonObject(rowIndex, colIndex, tile.rgb)
+            return skeletonObject(rowIndex, colIndex, tile.rgb, skeletonHP)
           // Lower chance of spawning an average enemy.
           } else if (Math.random() < 0.01) {
-            return crabmanObject(rowIndex, colIndex, tile.rgb)
+            return crabmanObject(rowIndex, colIndex, tile.rgb, crabmanHP)
           }
         }
         // Selects the middle third of the grid, which will be the middle difficulty zone.
         if (rowIndex > Math.round((grid.length - 1) / 3 - 1) && rowIndex < Math.round((grid.length - 1) / 3 * 2 + 1)) {
           // Higher chance of spawning an average enemy.
           if (Math.random() < 0.03) {
-            return crabmanObject(rowIndex, colIndex, tile.rgb)
+            return crabmanObject(rowIndex, colIndex, tile.rgb, crabmanHP)
           // Lower chance of spawning a weak enemy.
           } else if (Math.random() < 0.01) {
-            return skeletonObject(rowIndex, colIndex, tile.rgb)
+            return skeletonObject(rowIndex, colIndex, tile.rgb, skeletonHP)
           // Lower chance of spawning a strong enemy.
           } else if (Math.random() < 0.01) {
-            return pirateObject(rowIndex, colIndex, tile.rgb)
+            return pirateObject(rowIndex, colIndex, tile.rgb, pirateHP)
           }
         }
         // Selects the top third of the grid, which will be the hard zone.
         if (rowIndex < Math.round((grid.length - 1) / 3)) {
           // Higher chance of spawning a strong enemy.
           if (Math.random() < 0.03) {
-            return pirateObject(rowIndex, colIndex, tile.rgb)
+            return pirateObject(rowIndex, colIndex, tile.rgb, pirateHP)
           // Lower chance of spawning an average enemy.
           } else if (Math.random() < 0.01) {
-            return crabmanObject(rowIndex, colIndex, tile.rgb)
+            return crabmanObject(rowIndex, colIndex, tile.rgb, crabmanHP)
           }
         }
       }
@@ -104,11 +117,11 @@ export function gridEnemiesPass(grid) {
   // Grid with enemies is mapped again to add the boss.
   return newGrid.map((row, rowIndex) => 
     row.map((tile, colIndex) => {
-      // The first tile found with a strong enemy gets replaced by the boss.
-      // Variable is changed to keep track of this, so it doesn't happen again.
+      // The first tile found with an enemy gets replaced by the boss.
+      // Variable is flipped to keep track of this, so it doesn't happen again.
       if (tile.type === 'enemy' && captainPlaced === false) {
         captainPlaced = true
-        return captainObject(rowIndex, colIndex, tile.rgb)
+        return captainObject(rowIndex, colIndex, tile.rgb, captainHP)
       } else {
         return tile
       }
