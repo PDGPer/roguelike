@@ -4,7 +4,7 @@ export const DefaultProjectile = ({rgb}) => {
   const itemRGB = 'rgb(200, 130, 70)'
 
   return (
-    <div style={{width: 30, height: 30, backgroundColor: rgb}}>
+    <div title={'Some rocks'} style={{width: 30, height: 30, backgroundColor: rgb}}>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '100%', height: '100%'}}></div>
       </div>
@@ -58,7 +58,7 @@ export const DefaultMelee = ({rgb}) => {
   const itemRGB = 'rgb(200, 130, 70)'
 
   return (
-    <div style={{width: 30, height: 30, backgroundColor: rgb}}>
+    <div title={'A stick'} style={{width: 30, height: 30, backgroundColor: rgb}}>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '30%', height: '100%'}}></div>
         <div style={{width: '10%', height: '100%', backgroundColor: itemRGB}}></div>
@@ -119,12 +119,12 @@ export const DefaultMelee = ({rgb}) => {
   )
 }
 
-export const DefaultClothing = ({rgb}) => {
+export const DefaultArmor = ({rgb}) => {
 
   const itemRGB = 'rgb(200, 130, 70)'
 
   return (
-    <div style={{width: 30, height: 30, backgroundColor: rgb}}>
+    <div title={'Rags'} style={{width: 30, height: 30, backgroundColor: rgb}}>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '30%', height: '100%'}}></div>
         <div style={{width: '40%', height: '100%', backgroundColor: itemRGB}}></div>
@@ -197,7 +197,7 @@ export const SkeletonProjectile = ({rgb}) => {
   const itemRGB = 'white'
 
   return (
-    <div style={{width: 30, height: 30, backgroundColor: rgb}}>
+    <div title={'Screaming skull'} style={{width: 30, height: 30, backgroundColor: rgb}}>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '10%', height: '100%'}}></div>
       </div>
@@ -261,7 +261,7 @@ export const SkeletonMelee = ({rgb}) => {
   const itemRGB = 'white'
 
   return (
-    <div style={{width: 30, height: 30, backgroundColor: rgb}}>
+    <div title={'Sharpened bone'} style={{width: 30, height: 30, backgroundColor: rgb}}>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '10%', height: '100%'}}></div>
       </div>
@@ -313,13 +313,12 @@ export const SkeletonMelee = ({rgb}) => {
   )
 }
 
-export const SkeletonClothing = ({rgb}) => {
+export const SkeletonArmor = ({rgb}) => {
 
   const itemRGB = 'white'
 
   return (
-    <div style={{width: 30, height: 30, backgroundColor: rgb}}>
-
+    <div title={'Ribcage'} style={{width: 30, height: 30, backgroundColor: rgb}}>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '100%', height: '100%'}}></div>
       </div>
@@ -398,8 +397,7 @@ export const CrabmanProjectile = ({rgb}) => {
   const itemRGB = 'rgb(200, 15, 50)'
 
   return (
-    <div style={{width: 30, height: 30, backgroundColor: rgb}}>
-
+    <div title={'Smelly eggs'} style={{width: 30, height: 30, backgroundColor: rgb}}>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '100%', height: '100%'}}></div>
       </div>
@@ -459,7 +457,7 @@ export const CrabmanMelee = ({rgb}) => {
   const itemRGB = 'rgb(200, 15, 50)'
 
   return (
-    <div style={{width: 30, height: 30, backgroundColor: rgb}}>
+    <div title={'Crab claw'} style={{width: 30, height: 30, backgroundColor: rgb}}>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '20%', height: '100%'}}></div>
         <div style={{width: '30%', height: '100%', backgroundColor: itemRGB}}></div>
@@ -517,13 +515,12 @@ export const CrabmanMelee = ({rgb}) => {
   )
 }
 
-export const CrabmanClothing = ({rgb}) => {
+export const CrabmanArmor = ({rgb}) => {
 
   const itemRGB = 'rgb(200, 15, 50)'
 
   return (
-    <div style={{width: 30, height: 30, backgroundColor: rgb}}>
-
+    <div title={'Hollow shell'} style={{width: 30, height: 30, backgroundColor: rgb}}>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '20%', height: '100%'}}></div>
         <div style={{width: '60%', height: '100%', backgroundColor: itemRGB}}></div>
@@ -604,7 +601,7 @@ export const PirateProjectile = ({rgb}) => {
   const itemRGB = 'rgb(86, 15, 50)'
 
   return (
-    <div style={{width: 30, height: 30, backgroundColor: rgb}}>
+    <div title={'Flintlock pistol'} style={{width: 30, height: 30, backgroundColor: rgb}}>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '20%', height: '100%'}}></div>
         <div style={{width: '10%', height: '100%', backgroundColor: itemRGB}}></div>
@@ -668,8 +665,7 @@ export const PirateMelee = ({rgb}) => {
   const itemRGB = 'rgb(86, 15, 50)'
 
   return (
-    <div style={{width: 30, height: 30, backgroundColor: rgb}}>
-
+    <div title={'Boarding sabre'} style={{width: 30, height: 30, backgroundColor: rgb}}>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '80%', height: '100%'}}></div>
         <div style={{width: '20%', height: '100%', backgroundColor: itemRGB}}></div>
@@ -726,12 +722,12 @@ export const PirateMelee = ({rgb}) => {
   )
 }
 
-export const PirateClothing = ({rgb}) => {
+export const PirateArmor = ({rgb}) => {
 
   const itemRGB = 'rgb(86, 15, 50)'
 
   return (
-    <div style={{width: 30, height: 30, backgroundColor: rgb}}>
+    <div title={'Cuirass'} style={{width: 30, height: 30, backgroundColor: rgb}}>
 
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '30%', height: '100%'}}></div>
@@ -815,7 +811,7 @@ export const HealthPotion = ({rgb}) => {
   const itemRGB = 'lime'
 
   return (
-    <div style={{width: 30, height: 30, backgroundColor: rgb}}>
+    <div title={'Rum'} style={{width: 30, height: 30, backgroundColor: rgb}}>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '40%', height: '100%'}}></div>
         <div style={{width: '20%', height: '100%', backgroundColor: itemRGB}}></div>
