@@ -19,10 +19,10 @@ const UI = ({playerHP, playerMaxHP, flavorText}) => {
 // Only runs once, to be kept in state.
 function whereIsPlayer(grid) {
   // Starts at the bottom row, since the player spawns on the lower end.
-  for (let row = grid.length - 1; row >= 0; row--) {
-    for (let col = 0; col < grid[0].length; col++) {
-      if (grid[row][col].type === 'player') {
-        return {row, col}
+  for (let playerRow = grid.length - 1; playerRow >= 0; playerRow--) {
+    for (let playerCol = 0; playerCol < grid[0].length; playerCol++) {
+      if (grid[playerRow][playerCol].type === 'player') {
+        return {playerRow, playerCol}
       }
     }
   }
@@ -41,7 +41,7 @@ const App = () => {
   const [playerDamage, setPlayerDamage] = useState(5)
 
   // Messages displayed in the UI when fighting or defeating enemies
-  const [flavorText, setFlavorText] = useState('You awake, weak and unarmed. Your old foe is here... somewhere. Prepare yourself and end this, at long last.')
+  const [flavorText, setFlavorText] = useState('You awake, weak and unarmed. Your old foe is here... somewhere. Ready yourself and end him!')
 
   // Used for the movement useEffect to trigger renders in situations
   // where the player hasn't moved (like defeating an enemy).
@@ -65,20 +65,25 @@ const App = () => {
       }
     }
 
-    // Keydown event listeners recognize when player make a click.
+    // Keydown event listeners recognize when player makes a click.
     document.addEventListener('keydown', playerClickedMove)
     return () => {     
       document.removeEventListener('keydown', playerClickedMove)
     }
+  // Dependencies for the useEffect are a change in the player's position
+  // or an increment in a counter whose only purpose is to be used in
+  // cases where the player does not move into a new tile but has caused 
+  // a change in the grid (i.e. defeating an enemy).
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerPosition, clearTile])
 
   // Uses the current player position from state and the
-  // movement direction to calculate the tile the player
-  // moved into and turn it into a player object. The
-  // abandoned tile is turned into a terrain object.
-  function playerMove(grid, direction, {row, col}) {
+  // movement direction to handle changes to the grid
+  // and state caused by player moves.
+  function playerMove(grid, direction, {playerRow, playerCol}) {
 
+    // Depending on which direction the player moved, the case switch
+    // alters the x and y variables to use in coordinate calculations.
     let x = 0
     let y = 0
 
@@ -94,29 +99,53 @@ const App = () => {
       default:
     }
 
-    if(grid[row + x][col + y].crossable) {
+    // Player tries to move into a terrain/decor tile,
+    // the only ones with {crossable: true}.
+    if(grid[playerRow + x][playerCol + y].crossable) {
+      // A new grid is generated via a map. This process is used instead
+      // of the object being replaced directly in a grid copy because doing
+      // so creates a player object duplication bug.
       let newGrid = grid.map((gridRow) => gridRow.map((tile) => {
-        if(tile.row === row + x && tile.col === col + y) {
-          return playerObject(row + x, col + y, tile.rgb)
-        } else if (tile.row === row && tile.col === col) {
-          return terrainObject(row, col, tile.rgb)
+        // Current player position state and the x y coordinates are
+        // used to calculate the new position of the player. This process
+        // is used in all other cases.
+        if(tile.row === playerRow + x && tile.col === playerCol + y) {
+          // When that position is found, the terrain object is replaced 
+          // by a player object that gets its new properties from the
+          // object it replaced. 
+          return playerObject(playerRow + x, playerCol + y, tile.rgb)
+        } else if (tile.row === playerRow && tile.col === playerCol) {
+          // Vice-versa.
+          return terrainObject(playerRow, playerCol, tile.rgb)
         } else {
+          // Otherwise, return the same tile that was there before.
           return tile
         }
       }))
+      // When the map is finished, the old grid is replaced.
       setGrid(newGrid)
-      setPlayerPosition({row: row + x, col: col + y})
+      // And the player position is updated.
+      setPlayerPosition({playerRow: playerRow + x, playerCol: playerCol + y})
 
-    } else if(grid[row + x][col + y].type === 'enemy' && grid[row + x][col + y].hp - playerDamage <= 0) {
+    // Player moves (attacks) into a tile occupied by an enemy.
+    // If that enemy's HP is equal or less than zero after the
+    // attack, replaces the enemy with a terrain object.
+    } else if(grid[playerRow + x][playerCol + y].type === 'enemy' && grid[playerRow + x][playerCol + y].hp - playerDamage <= 0) {
+      // Logic used for the replacement is similar to that used
+      // in map, except it's done directly in a copy of the grid.
       let newGrid = [...grid]
-      newGrid[row + x][col + y] = terrainObject(row + x, col + y, newGrid[row + x][col + y].rgb)
+      newGrid[playerRow + x][playerCol + y] = terrainObject(playerRow + x, playerCol + y, newGrid[playerRow + x][playerCol + y].rgb)
       setGrid(newGrid)
+      // As the player hasn't actually switched tiles, the useEffect
+      // needs to be told directly to trigger (see its dependencies
+      // for more information).
       setClearTile(clearTile + 1)
 
-
-    } else if(grid[row + x][col + y].type === 'enemy') {
+    // Player has moved against an enemy but it's not the fatal blow.
+    } else if(grid[playerRow + x][playerCol + y].type === 'enemy') {
       let newGrid = [...grid]
-      newGrid[row + x][col + y].hp = newGrid[row + x][col + y].hp - playerDamage
+      // Enemy HP is updated after deducting damage caused by player.
+      newGrid[playerRow + x][playerCol + y].hp = newGrid[playerRow + x][playerCol + y].hp - playerDamage
       setGrid(newGrid)
     }
   }

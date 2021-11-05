@@ -53,7 +53,7 @@ function captainObject(row, col, rgb, hp) {
     type: 'enemy',
     enemy: 'captain',
     flavorText: 'After all this time. Here he is. End him.',
-    deathFlavorText: 'You are free now.',
+    deathFlavorText: 'The burden is lifted. You are free now.',
     crossable: false,
   }
 }
