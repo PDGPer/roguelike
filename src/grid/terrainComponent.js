@@ -6,6 +6,7 @@ import { createObstacleAnchorGrid, expandObstaclesAroundAnchors, gridObstaclePas
 import { gridBordersPass } from './04-borders'
 import { gridEnemiesPass, EnemyTile } from './05-enemies'
 import { Player, gridPlayerPass } from './06-player'
+import { Item } from './items'
 // import { DefaultProjectile, DefaultMelee, DefaultClothing, SkeletonProjectile, SkeletonMelee, SkeletonClothing, CrabmanProjectile, CrabmanMelee, CrabmanClothing, PirateProjectile, PirateMelee, PirateClothing, HealthPotion } from './assets/items'
 
 // A small utility function to keep the Terrain component tidy
@@ -61,10 +62,18 @@ export const Terrain = ({grid}) => {
               <Player 
                 key={tile.row.toString() + tile.col.toString()}
                 rgb={tile.rgb}
-                enemy={tile.enemy}
               />
             )
-          }
+          } else if (tile.type === 'item') {
+            return (
+              <Item 
+                key={tile.row.toString() + tile.col.toString()}
+                rgb={tile.rgb}
+                techLevel={tile.techLevel}
+                item={tile.item}
+              />
+            ) 
+          } 
           
           return undefined
 

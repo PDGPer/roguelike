@@ -1,5 +1,3 @@
-import { useEffect, useRef } from "react";
-
 // Finds the player position.
 // Only runs once, to be kept in state.
 export function whereIsPlayer(grid) {
@@ -12,22 +10,3 @@ export function whereIsPlayer(grid) {
     }
   }
 }
-
-// Equivalent of setInterval for React.
-export const useInterval = (callback, delay) => {
-  const savedCallback = useRef();
-
-  useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  useEffect(() => {
-    const tick = () => {
-      savedCallback.current();
-    }
-    if (delay !== null) {
-      let id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
-};

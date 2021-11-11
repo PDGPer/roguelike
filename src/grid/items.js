@@ -1,3 +1,137 @@
+// Grid objects representing skeleton drops.
+function skeletonProjectileObject(row, col, rgb) {
+  return {
+    row,
+    col,
+    rgb,
+    type: 'item',
+    item: 'projectile',
+    techLevel: 1,
+    flavorText: "You pick up the skeleton's skull to use as a weapon. It lets out a disturbing ear piercing shriek as you throw it.",
+    crossable: true,
+  }
+}
+
+function skeletonMeleeObject(row, col, rgb) {
+  return {
+    row,
+    col,
+    rgb,
+    type: 'item',
+    item: 'melee',
+    techLevel: 1,
+    flavorText: 'A broken bone, splintered at one end. It will do as a melee weapon. Your fingers feel numb holding it.',
+    crossable: true,
+  }
+}
+
+function skeletonArmorObject(row, col, rgb) {
+  return {
+    row,
+    col,
+    rgb,
+    type: 'item',
+    item: 'armor',
+    techLevel: 1,
+    flavorText: "The skeleton's ribcage serves as improvised armor. Your heart sometimes skips a beat while wearing it, and you're never sure if the next one will come.",
+    crossable: true,
+  }
+}
+
+// Grid objects representing crabman drops.
+function crabmanProjectileObject(row, col, rgb) {
+  return {
+    row,
+    col,
+    rgb,
+    type: 'item',
+    item: 'projectile',
+    techLevel: 2,
+    flavorText: 'A foul-smelling crabman egg. When these burst, everyone in the vicinity is compelled to retch their last three meals. A good throwing weapon.',
+    crossable: true,
+  }
+}
+
+function crabmanMeleeObject(row, col, rgb) {
+  return {
+    row,
+    col,
+    rgb,
+    type: 'item',
+    item: 'melee',
+    techLevel: 2,
+    flavorText: 'A crabman claw serves as a decent club-glove-thing after some scraping of internals.',
+    crossable: true,
+  }
+}
+
+function crabmanArmorObject(row, col, rgb) {
+  return {
+    row,
+    col,
+    rgb,
+    type: 'item',
+    item: 'armor',
+    techLevel: 2,
+    flavorText: 'After long hours spent scraping organic matter from its interior, a crabmen shell will make do as armor. You will never smell the same, however.',
+    crossable: true,
+  }
+}
+
+// Grid objects representing pirate drops.
+function pirateProjectileObject(row, col, rgb) {
+  return {
+    row,
+    col,
+    rgb,
+    type: 'item',
+    item: 'projectile',
+    techLevel: 3,
+    flavorText: 'This flintlock pistol is worn by use but well mantained. Its barrel lists too many notches to count at a glance.',
+    crossable: true,
+  }
+}
+
+function pirateMeleeObject(row, col, rgb) {
+  return {
+    row,
+    col,
+    rgb,
+    type: 'item',
+    item: 'melee',
+    techLevel: 3,
+    flavorText: 'A boarding sabre, sharp and glistening. The leather handle smells like old sweat and blood.',
+    crossable: true,
+  }
+}
+
+function pirateArmorObject(row, col, rgb) {
+  return {
+    row,
+    col,
+    rgb,
+    type: 'item',
+    item: 'armor',
+    techLevel: 3,
+    flavorText: 'A dented cuirass. Rust slowly eats away at it, but it serves still.',
+    crossable: true,
+  }
+}
+
+// Grid object representing rum.
+function rumObject(row, col, rgb) {
+  return {
+    row,
+    col,
+    rgb,
+    type: 'item',
+    item: 'rum',
+    techLevel: 99,
+    flavorText: 'A well preserved bottle of rum. A reminder that good things still exist, somewhere far away from this cursed place.',
+    crossable: true,
+  }
+}
+
 // Graphics for default items.
 export const DefaultProjectile = ({rgb}) => {
 
@@ -806,7 +940,7 @@ export const PirateArmor = ({rgb}) => {
 }
 
 // Graphics for health potion.
-export const HealthPotion = ({rgb}) => {
+export const RumBottle = ({rgb}) => {
 
   const itemRGB = 'lime'
 
@@ -870,4 +1004,120 @@ export const HealthPotion = ({rgb}) => {
       </div>
     </div>
   )
+}
+
+// Keeps track of which weapons and armor have already dropped, to avoid duplicates.
+let hasSkeletonProjectileDropped = false
+let hasSkeletonMeleeDropped = false
+let hasSkeletonArmorDropped = false
+
+let hasCrabmanProjectileDropped = false
+let hasCrabmanMeleeDropped = false
+let hasCrabmanArmorDropped = false
+
+let hasPirateProjectileDropped = false
+let hasPirateMeleeDropped = false
+let hasPirateArmorDropped = false
+
+// Figures out which item should drop depending on enemy and what the player already holds.
+export function itemDrop (row, col, rgb, enemy, projectileTechLvl, meleeTechLvl, armorTechLvl) {
+  const dropchance = 0.40
+
+  if (enemy === 'skeleton') {
+    if (projectileTechLvl === 0 && hasSkeletonProjectileDropped === false && Math.random() < dropchance) {
+      hasSkeletonProjectileDropped = true
+      return skeletonProjectileObject(row, col, rgb)
+    } else if (meleeTechLvl === 0 && hasSkeletonMeleeDropped === false && Math.random() < dropchance) {
+      hasSkeletonMeleeDropped = true
+      return skeletonMeleeObject(row, col, rgb)
+    } else if (armorTechLvl === 0 && hasSkeletonArmorDropped === false && Math.random() < dropchance) {
+      hasSkeletonArmorDropped = true
+      return skeletonArmorObject(row, col, rgb)
+    } else {
+      return rumObject(row, col, rgb)
+    }
+  }
+  if (enemy === 'crabman') {
+    if (projectileTechLvl <= 1 && hasCrabmanProjectileDropped === false && Math.random() < dropchance) {
+      hasCrabmanProjectileDropped = true
+      return crabmanProjectileObject(row, col, rgb)
+    } else if (meleeTechLvl <= 1 && hasCrabmanMeleeDropped === false && Math.random() < dropchance) {
+      hasCrabmanMeleeDropped = true
+      return crabmanMeleeObject(row, col, rgb)
+    } else if (armorTechLvl <= 1 && hasCrabmanArmorDropped === false && Math.random() < dropchance) {
+      hasCrabmanArmorDropped = true
+      return crabmanArmorObject(row, col, rgb)
+    } else {
+      return rumObject(row, col, rgb)
+    }
+  }
+  if (enemy === 'pirate') {
+    if (projectileTechLvl <= 2 && hasPirateProjectileDropped === false && Math.random() < dropchance) {
+      hasPirateProjectileDropped = true
+      return pirateProjectileObject(row, col, rgb)
+    } else if (meleeTechLvl <= 2 && hasPirateMeleeDropped === false && Math.random() < dropchance) {
+      hasPirateArmorDropped = true
+      return pirateMeleeObject(row, col, rgb)
+    } else if (armorTechLvl <= 2 && hasPirateArmorDropped === false && Math.random() < dropchance) {
+      hasPirateArmorDropped = true
+      return pirateArmorObject(row, col, rgb)
+    } else {
+      return rumObject(row, col, rgb)
+    }
+  }
+}
+
+// Retuns a different graphical component based on the item requested.
+export const Item = ({rgb, techLevel, item}) => {
+  // If the item is skeleton level.
+  if (techLevel === 1) {
+    if (item === 'projectile') {
+      return (
+        <SkeletonProjectile rgb={rgb} />
+      )
+    } else if (item === 'melee') {
+      return (
+        <SkeletonMelee rgb={rgb} />
+      )
+    } else if (item === 'armor') {
+      return (
+        <SkeletonArmor rgb={rgb} />
+      )
+    } 
+  // If the item is crabman level.
+  } else if (techLevel === 2) {
+    if (item === 'projectile') {
+      return (
+        <CrabmanProjectile rgb={rgb} />
+      )
+    } else if (item === 'melee') {
+      return (
+        <CrabmanMelee rgb={rgb} />
+      )
+    } else if (item === 'armor') {
+      return (
+        <CrabmanArmor rgb={rgb} />
+      )
+    } 
+  // If the item is pirate level.
+  } else if (techLevel === 3) {
+    if (item === 'projectile') {
+      return (
+        <PirateProjectile rgb={rgb} />
+      )
+    } else if (item === 'melee') {
+      return (
+        <PirateMelee rgb={rgb} />
+      )
+    } else if (item === 'armor') {
+      return (
+        <PirateArmor rgb={rgb} />
+      )
+    } 
+  } else {
+    // Otherwise returns a rum bottle.
+    return (
+      <RumBottle rgb={rgb} />
+    )
+  }
 }

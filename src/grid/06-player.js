@@ -98,3 +98,12 @@ export function gridPlayerPass(grid) {
 
    return newGrid
 }
+
+// Calculate armor damage absorption.
+export function damageMinusArmor(damage, armor) {
+  if (damage - armor > 0) {
+    return damage - armor
+  } else {
+    return 0
+  }
+}

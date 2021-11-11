@@ -1,3 +1,5 @@
+import { skeletonHP, crabmanHP, pirateHP, captainHP, skeletonDmg, crabmanDmg, pirateDmg, captainDmg } from '../config'
+
 // Grid objects representing the enemies.
 function skeletonObject(row, col, rgb, hp, dmg) {
   return {
@@ -27,7 +29,7 @@ function crabmanObject(row, col, rgb, hp, dmg) {
     type: 'enemy',
     enemy: 'crabman',
     flavorText: 'An abomination from the depths, your foe employs them cheaply. Some... meat... is all they ask for in payment.',
-    deathFlavorText: "As the things' innards burst from its broken shell you are assaulted by the stench. Never breathing through your nose, you stew the creature and grow stronger with each disgusting spoonful.",
+    deathFlavorText: "As the things' innards burst from its broken shell you are assaulted by the stench. Never breathing through your nose, you make a stew of the creature and grow stronger with each disgusting spoonful.",
     crossable: false,
   }
 }
@@ -65,16 +67,6 @@ function captainObject(row, col, rgb, hp, dmg) {
 // Grid is mapped to add enemies, 
 // with different rules for each third.
 export function gridEnemiesPass(grid) {
-
-  let skeletonHP = 3
-  let crabmanHP = 6
-  let pirateHP = 9
-  let captainHP = 12
-
-  let skeletonDmg = 1
-  let crabmanDmg = 2
-  let pirateDmg = 3
-  let captainDmg = 4
 
   let newGrid = grid.map((row, rowIndex) => 
     row.map((tile, colIndex) => {
@@ -470,10 +462,9 @@ export const EnemyTile = ({rgb, enemy}) => {
       />
     )
   }
-  
-
 }
 
+// Gets enemy graphics for the UI.
 export function getEnemyGraphics(enemy) {
   if (enemy === 'skeleton'){
     return Skeleton('rgba(0, 0, 0, 0)')
