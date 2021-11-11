@@ -1,3 +1,5 @@
+//import { useRef } from "react"
+
 // Grid object representing the player position, stats and inventory.
 export function playerObject(row, col, rgb) {
   return {
@@ -14,7 +16,8 @@ export const Player = ({rgb}) => {
   const charRGB = 'yellow'
 
   return (
-    <div style={{width: 30, height: 30, backgroundColor: rgb}}>
+    // Player has an id, so he can be tracked by scroll.
+    <div id='player' style={{width: 30, height: 30, backgroundColor: rgb}}>
       <div style={{width: '100%', height: '10%', display: 'flex', flexDirection: 'row'}}>
         <div style={{width: '20%', height: '100%'}}></div>
         <div style={{width: '50%', height: '100%', backgroundColor: charRGB}}></div>

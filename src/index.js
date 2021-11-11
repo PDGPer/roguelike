@@ -199,6 +199,8 @@ const App = () => {
   useEffect(() => {
     // Keydown events to track player key presses.
     window.addEventListener("keydown", playerPressedKey)
+    // Tracks the player's movements on the graphical map and scrolls there.
+    document.getElementById('player').scrollIntoView({behavior: "smooth"})
     return () => {     
       window.removeEventListener('keydown', playerPressedKey)
     }
