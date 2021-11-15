@@ -1,4 +1,4 @@
-import { skeletonHP, crabmanHP, pirateHP, captainHP, skeletonDmg, crabmanDmg, pirateDmg, captainDmg } from '../config'
+import { skeletonHP, crabmanHP, pirateHP, captainHP, skeletonDmg, crabmanDmg, pirateDmg, captainDmg, bottomWeakEnemy, bottomAverageEnemy, middleWeakEnemy, middleAverageEnemy, middleStrongEnemy, topAverageEnemy, topStrongEnemy} from '../config'
 
 // Grid objects representing the enemies.
 function skeletonObject(row, col, rgb, hp, dmg) {
@@ -75,33 +75,33 @@ export function gridEnemiesPass(grid) {
         // Selects the lower third of the grid, which will be the easy zone.
         if (rowIndex > Math.round((grid.length - 1) / 3 * 2)) {
           // Higher chance of spawning a weak enemy.
-          if (Math.random() < 0.03) {
+          if (Math.random() < bottomWeakEnemy) {
             return skeletonObject(rowIndex, colIndex, tile.rgb, skeletonHP, skeletonDmg)
           // Lower chance of spawning an average enemy.
-          } else if (Math.random() < 0.01) {
+          } else if (Math.random() < bottomAverageEnemy) {
             return crabmanObject(rowIndex, colIndex, tile.rgb, crabmanHP, crabmanDmg)
           }
         }
         // Selects the middle third of the grid, which will be the middle difficulty zone.
         if (rowIndex > Math.round((grid.length - 1) / 3 - 1) && rowIndex < Math.round((grid.length - 1) / 3 * 2 + 1)) {
           // Higher chance of spawning an average enemy.
-          if (Math.random() < 0.03) {
+          if (Math.random() < middleAverageEnemy) {
             return crabmanObject(rowIndex, colIndex, tile.rgb, crabmanHP, crabmanDmg)
           // Lower chance of spawning a weak enemy.
-          } else if (Math.random() < 0.01) {
+          } else if (Math.random() < middleWeakEnemy) {
             return skeletonObject(rowIndex, colIndex, tile.rgb, skeletonHP, skeletonDmg)
           // Lower chance of spawning a strong enemy.
-          } else if (Math.random() < 0.01) {
+          } else if (Math.random() < middleStrongEnemy) {
             return pirateObject(rowIndex, colIndex, tile.rgb, pirateHP, pirateDmg)
           }
         }
         // Selects the top third of the grid, which will be the hard zone.
         if (rowIndex < Math.round((grid.length - 1) / 3)) {
           // Higher chance of spawning a strong enemy.
-          if (Math.random() < 0.03) {
+          if (Math.random() < topStrongEnemy) {
             return pirateObject(rowIndex, colIndex, tile.rgb, pirateHP, pirateDmg)
           // Lower chance of spawning an average enemy.
-          } else if (Math.random() < 0.01) {
+          } else if (Math.random() < topAverageEnemy) {
             return crabmanObject(rowIndex, colIndex, tile.rgb, crabmanHP, crabmanDmg)
           }
         }

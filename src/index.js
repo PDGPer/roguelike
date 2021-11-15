@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { terrainObject } from './grid/01-terrain'
 import { getEnemyGraphics } from './grid/05-enemies'
-import { playerObject, damageMinusArmor } from './grid/06-player'
+import { playerObject, whereIsPlayer, damageMinusArmor } from './grid/06-player'
+import { fogGridMaker, Fog, clearFog } from './grid/07-fog'
 import { gridMaker, Terrain } from './grid/terrainComponent'
-import { whereIsPlayer } from './utility'
 import { DefaultMelee, DefaultProjectile, DefaultArmor, SkeletonProjectile, SkeletonMelee, SkeletonArmor, CrabmanProjectile, CrabmanMelee, CrabmanArmor, PirateProjectile, PirateMelee, PirateArmor, RumBottle, itemDrop } from './grid/items'
+import { initialPlayerHP, initialPlayerMaxHP, initialPlayerDamage, generalDropChance } from './config'
 import './style.css'
 
 // UI component.
@@ -36,11 +37,11 @@ const UI = ({playerHP, playerMaxHP, playerDamage, playerArmor, flavorText, proje
 }
 
 // Initial player stats. Modified by program.
-let playerHP = 10
-let playerMaxHP = 10
+let playerHP = initialPlayerHP
+let playerMaxHP = initialPlayerMaxHP
 let playerProjectileDamage = 0
 let playerMeleeDamage = 0
-let playerDamage = 1
+let playerDamage = initialPlayerDamage
 let playerArmor = 0
 
 // Initial player inventory. Modified by program.
@@ -49,13 +50,13 @@ let meleeTechLvl = 0
 let armorTechLvl = 0
 
 // Initial UI inventory graphics. Modified by program.
-let projectileWeapon = DefaultProjectile('rgba(255, 255, 255, 0)')
-let meleeWeapon = DefaultMelee('rgba(255, 255, 255, 0)')
-let armor = DefaultArmor('rgba(255, 255, 255, 0)')
+let projectileWeapon = DefaultProjectile('rgba(0, 0, 0, 0)')
+let meleeWeapon = DefaultMelee('rgba(0, 0, 0, 0)')
+let armor = DefaultArmor('rgba(0, 0, 0, 0)')
 
 // Initial UI status and flavor text. Modified by program.
 let flavorGraphics = <div></div>
-let infoMessage = <div></div>
+let infoMessage = <div>Use WASD to navigate.</div>
 let flavorText = 'You awake, covered in rags and armed with only sticks and stones. Your old foe is here... somewhere. You will have to ready yourself before facing him.'
 
 // Updates the player stats and UI on item pickup. Extremely impure.
@@ -168,6 +169,9 @@ const App = () => {
   // Initial player position. Used for movement calculations later.
   const [playerPosition, setPlayerPosition] = useState(whereIsPlayer(grid))
 
+  // Initial fog of war grid.
+  const [fogGrid, setFogGrid] = useState(fogGridMaker(grid))
+
   // Used to trigger renders in useEffect.
   const [clearTile, setClearTile] = useState(0)
 
@@ -235,6 +239,8 @@ const App = () => {
 
     // Player moves into a crossable tile (terrain, decor or item).
     } else if(grid[playerRow + x][playerCol + y].crossable) {
+      // Clears the fog around the player after a move.
+      setFogGrid(clearFog(fogGrid, playerRow + x, playerCol + y))
       // Using map because it seems to reduce chances of a player object duplication bug.
       let newGrid = grid.map((gridRow) => gridRow.map((tile) => {
         // New player position is reached.
@@ -257,6 +263,8 @@ const App = () => {
       setGrid(newGrid)
       // And the player position is updated.
       setPlayerPosition({playerRow: playerRow + x, playerCol: playerCol + y})
+      // Clears the fog around the player after a move.
+      setFogGrid(clearFog(fogGrid, playerRow + x, playerCol + y))
       return
 
     // Player moves against an enemy. The attack is fatal to the enemy (HP <= 0)
@@ -276,7 +284,7 @@ const App = () => {
       let newGrid = grid.map((gridRow) => gridRow.map((tile) => {
         if(tile.row === playerRow + x && tile.col === playerCol + y) {
           // 60% chance for an item drop, unless its the captain.
-          if (tile.enemy !== 'captain' && Math.random() < 0.6) {
+          if (tile.enemy !== 'captain' && Math.random() < generalDropChance) {
             // Enemy object is replaced by an item.
             return itemDrop(tile.row, tile.col, tile.rgb, tile.enemy, projectileTechLvl, meleeTechLvl, armorTechLvl)
           } else {
@@ -337,6 +345,11 @@ const App = () => {
         flavorUI={flavorGraphics}
         infoMessage={infoMessage}
       />
+      <div id={'fog'}>
+        <Fog
+          fogGrid={fogGrid}
+        />
+      </div>
       <div id={'terrain'}>
         <Terrain
           grid={grid}

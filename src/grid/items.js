@@ -1,3 +1,6 @@
+import { itemDropChance, rumDropChance } from '../config'
+import { terrainObject } from './01-terrain'
+
 // Grid objects representing skeleton drops.
 function skeletonProjectileObject(row, col, rgb) {
   return {
@@ -1021,48 +1024,53 @@ let hasPirateArmorDropped = false
 
 // Figures out which item should drop depending on enemy and what the player already holds.
 export function itemDrop (row, col, rgb, enemy, projectileTechLvl, meleeTechLvl, armorTechLvl) {
-  const dropchance = 0.40
 
   if (enemy === 'skeleton') {
-    if (projectileTechLvl === 0 && hasSkeletonProjectileDropped === false && Math.random() < dropchance) {
+    if (projectileTechLvl === 0 && hasSkeletonProjectileDropped === false && Math.random() < itemDropChance) {
       hasSkeletonProjectileDropped = true
       return skeletonProjectileObject(row, col, rgb)
-    } else if (meleeTechLvl === 0 && hasSkeletonMeleeDropped === false && Math.random() < dropchance) {
+    } else if (meleeTechLvl === 0 && hasSkeletonMeleeDropped === false && Math.random() < itemDropChance) {
       hasSkeletonMeleeDropped = true
       return skeletonMeleeObject(row, col, rgb)
-    } else if (armorTechLvl === 0 && hasSkeletonArmorDropped === false && Math.random() < dropchance) {
+    } else if (armorTechLvl === 0 && hasSkeletonArmorDropped === false && Math.random() < itemDropChance) {
       hasSkeletonArmorDropped = true
       return skeletonArmorObject(row, col, rgb)
-    } else {
+    } else if (Math.random() < rumDropChance) {
       return rumObject(row, col, rgb)
+    } else {
+      return terrainObject(row, col, rgb)
     }
   }
   if (enemy === 'crabman') {
-    if (projectileTechLvl <= 1 && hasCrabmanProjectileDropped === false && Math.random() < dropchance) {
+    if (projectileTechLvl <= 1 && hasCrabmanProjectileDropped === false && Math.random() < itemDropChance) {
       hasCrabmanProjectileDropped = true
       return crabmanProjectileObject(row, col, rgb)
-    } else if (meleeTechLvl <= 1 && hasCrabmanMeleeDropped === false && Math.random() < dropchance) {
+    } else if (meleeTechLvl <= 1 && hasCrabmanMeleeDropped === false && Math.random() < itemDropChance) {
       hasCrabmanMeleeDropped = true
       return crabmanMeleeObject(row, col, rgb)
-    } else if (armorTechLvl <= 1 && hasCrabmanArmorDropped === false && Math.random() < dropchance) {
+    } else if (armorTechLvl <= 1 && hasCrabmanArmorDropped === false && Math.random() < itemDropChance) {
       hasCrabmanArmorDropped = true
       return crabmanArmorObject(row, col, rgb)
-    } else {
+    } else if (Math.random() < rumDropChance) {
       return rumObject(row, col, rgb)
+    } else {
+      return terrainObject(row, col, rgb)
     }
   }
   if (enemy === 'pirate') {
-    if (projectileTechLvl <= 2 && hasPirateProjectileDropped === false && Math.random() < dropchance) {
+    if (projectileTechLvl <= 2 && hasPirateProjectileDropped === false && Math.random() < itemDropChance) {
       hasPirateProjectileDropped = true
       return pirateProjectileObject(row, col, rgb)
-    } else if (meleeTechLvl <= 2 && hasPirateMeleeDropped === false && Math.random() < dropchance) {
+    } else if (meleeTechLvl <= 2 && hasPirateMeleeDropped === false && Math.random() < itemDropChance) {
       hasPirateArmorDropped = true
       return pirateMeleeObject(row, col, rgb)
-    } else if (armorTechLvl <= 2 && hasPirateArmorDropped === false && Math.random() < dropchance) {
+    } else if (armorTechLvl <= 2 && hasPirateArmorDropped === false && Math.random() < itemDropChance) {
       hasPirateArmorDropped = true
       return pirateArmorObject(row, col, rgb)
-    } else {
+    } else if (Math.random() < rumDropChance) {
       return rumObject(row, col, rgb)
+    } else {
+      return terrainObject(row, col, rgb)
     }
   }
 }
