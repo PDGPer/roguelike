@@ -45,3 +45,7 @@ body {
 .test {
   color: rgb(0, 255, 221)
 }
+
+.statsLettering {
+  font-size: 25px;
+}

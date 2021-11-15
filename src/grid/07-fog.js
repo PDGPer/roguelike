@@ -17,7 +17,7 @@ function fogObject(row, col, red, green, blue, opacity) {
     green,
     blue,
     opacity,
-    rgba: '',
+    rgb: '',
   }
 }
 
@@ -160,10 +160,10 @@ export function fogGridMaker(grid) {
 }
 
 // The graphical component of the fog.
-const FogTile = ({rgba}) => {
+const FogTile = ({rgb}) => {
   return (
     <div
-      style={{width: 30, height: 30, backgroundColor: rgba}}
+      style={{width: 30, height: 30, backgroundColor: rgb}}
     ></div>
   )
 }
@@ -181,7 +181,7 @@ export const Fog = ({fogGrid}) => {
             <FogTile 
               key={tile.row.toString() + tile.col.toString()}
               // The rgba(...) is created by the rgba(...) assembler.
-              rgba={getFogObjectRGBA(tile)}
+              rgb={getFogObjectRGBA(tile)}
             />
           )
         })}

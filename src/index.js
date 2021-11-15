@@ -6,35 +6,9 @@ import { playerObject, whereIsPlayer, damageMinusArmor } from './grid/06-player'
 import { fogGridMaker, Fog, clearFog } from './grid/07-fog'
 import { gridMaker, Terrain } from './grid/terrainComponent'
 import { DefaultMelee, DefaultProjectile, DefaultArmor, SkeletonProjectile, SkeletonMelee, SkeletonArmor, CrabmanProjectile, CrabmanMelee, CrabmanArmor, PirateProjectile, PirateMelee, PirateArmor, RumBottle, itemDrop } from './grid/items'
+import { UI } from './ui'
 import { initialPlayerHP, initialPlayerMaxHP, initialPlayerDamage, generalDropChance } from './config'
 import './style.css'
-
-// UI component.
-const UI = ({playerHP, playerMaxHP, playerDamage, playerArmor, flavorText, projectileUI, meleeUI, armorUI, flavorUI, infoMessage}) => {
-  return (
-    <div id={'ui'}>
-      <p>HP: {playerHP} of {playerMaxHP}</p>
-      <p>DMG: {playerDamage}</p>
-      <p>Armor: {playerArmor}</p>
-      <p>Inventory:</p>
-      <div style={{display: 'flex', flexDirection: 'row'}}>
-        {projectileUI}
-        {meleeUI}
-        {armorUI}
-      </div>
-      <br></br>
-      <hr className={'hr'}></hr>
-      <p>{flavorText}</p>
-      <div style={{display: 'flex', justifyContent: 'center'}}>
-        {flavorUI}
-      </div>
-      <div style={{display: 'flex', justifyContent: 'center'}}>
-        {infoMessage}
-      </div>
-      <hr className={'hr'}></hr>
-    </div>
-  )
-}
 
 // Initial player stats. Modified by program.
 let playerHP = initialPlayerHP
@@ -58,6 +32,9 @@ let armor = DefaultArmor('rgba(0, 0, 0, 0)')
 let flavorGraphics = <div></div>
 let infoMessage = <div>Use WASD to navigate.</div>
 let flavorText = 'You awake, covered in rags and armed with only sticks and stones. Your old foe is here... somewhere. You will have to ready yourself before facing him.'
+
+// Game over status.
+let isGameOver = false
 
 // Updates the player stats and UI on item pickup. Extremely impure.
 function onItemPickup(item, pickupTechLevel, newFlavorText) {
@@ -180,7 +157,7 @@ const App = () => {
     // Ignores repeated events caused by pressing a key down continuously.
     if (e.repeat) {
       return
-    } else {
+    } else if (isGameOver === false) {
       // Recognizes WASD movement and sends it to the movement handler.
       switch (e.code) {
         case 'KeyW': 
@@ -300,6 +277,11 @@ const App = () => {
       // needs to be told to trigger directly (see its dependencies
       // for more information).
       setClearTile(clearTile + 1)
+
+      if(playerHP <= 0) {
+        isGameOver = true
+      }
+
       return
 
     // Player has moved against an enemy but it's not the fatal blow.
@@ -323,11 +305,12 @@ const App = () => {
       infoMessage =<div><p>Enemy has {grid[playerRow + x][playerCol + y].hp} HP left and does {damageDone} HP damage to you.</p></div>
       
       setClearTile(clearTile + 1)
-      return
-    }
 
-    if(playerHP <= 0) {
-      console.log('Game over')
+      if(playerHP <= 0) {
+        isGameOver = true
+      }
+
+      return
     }
   }
 
