@@ -49,3 +49,71 @@ body {
 .statsLettering {
   font-size: 25px;
 }
+
+#game-over {
+  display: flex; 
+  flex-direction: column;
+  align-content: center;
+  background-color: black;
+  color: white;
+  min-width: 390px;
+  min-height: 210px;
+  position: fixed;
+  z-index: 2;
+  font-size: 25px;
+  font-family: Georgia, sans-serif;
+  left: 440px;
+  top: 40%;
+}
+
+#game-won {
+  display: flex; 
+  flex-direction: column;
+  align-content: center;
+  background-color: white;
+  color: black;
+  min-width: 390px;
+  min-height: 210px;
+  position: fixed;
+  z-index: 2;
+  font-size: 25px;
+  font-family: Georgia, sans-serif;
+  left: 440px;
+  top: 40%;
+}
+
+.button {
+  font-size: 20px;
+  font-family: Georgia, sans-serif;
+  margin-top: 30px;
+  padding: 5px;
+  background-color: white;
+  border: none;
+  border-right: solid 2px crimson;
+  border-bottom: solid 2px crimson;
+}
+
+.button:hover {
+  background-color: crimson;
+  color: white;
+  border-right: solid 2px rgb(83, 0, 0);
+  border-bottom: solid 2px rgb(83, 0, 0);
+}
+
+.button-won {
+  font-size: 20px;
+  font-family: Georgia, sans-serif;
+  margin-top: 30px;
+  padding: 5px;
+  color:white;
+  background-color: rgb(83, 0, 0);
+  border: none;
+  border-right: solid 2px crimson;
+  border-bottom: solid 2px crimson;
+}
+
+.button-won:hover {
+  background-color: crimson;
+  border-right: solid 2px rgb(83, 0, 0);
+  border-bottom: solid 2px rgb(83, 0, 0);
+}

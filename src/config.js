@@ -22,7 +22,7 @@ export const captainDmg = 13
 // General item drop chance (0-1).
 export const generalDropChance = 0.55
 export const itemDropChance = 0.40
-export const rumDropChance = 0.50
+export const rumDropChance = 0.60
 
 // Enemy spawn chance (0-1) by map section.
 export const bottomWeakEnemy = 0.04

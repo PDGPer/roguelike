@@ -133,7 +133,7 @@ export function gridEnemiesPass(grid) {
 
 // All enemies are a 10x10 CSS grid.
 // Weaker enemies use brighter colors and vice-versa.
-const Skeleton = ({rgb}) => {
+export const Skeleton = ({rgb}) => {
 
   const charRGB = 'white'
 
@@ -203,7 +203,7 @@ const Skeleton = ({rgb}) => {
   )
 }
 
-const Crabman = ({rgb}) => {
+export const Crabman = ({rgb}) => {
 
   const charRGB = 'rgb(200, 15, 50)'
 

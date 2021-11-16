@@ -6,7 +6,7 @@ import { playerObject, whereIsPlayer, damageMinusArmor } from './grid/06-player'
 import { fogGridMaker, Fog, clearFog } from './grid/07-fog'
 import { gridMaker, Terrain } from './grid/terrainComponent'
 import { DefaultMelee, DefaultProjectile, DefaultArmor, SkeletonProjectile, SkeletonMelee, SkeletonArmor, CrabmanProjectile, CrabmanMelee, CrabmanArmor, PirateProjectile, PirateMelee, PirateArmor, RumBottle, itemDrop } from './grid/items'
-import { UI } from './ui'
+import { UI, GameOver, GameWon } from './ui'
 import { initialPlayerHP, initialPlayerMaxHP, initialPlayerDamage, generalDropChance } from './config'
 import './style.css'
 
@@ -35,6 +35,7 @@ let flavorText = 'You awake, covered in rags and armed with only sticks and ston
 
 // Game over status.
 let isGameOver = false
+let isCaptainDefeated = false
 
 // Updates the player stats and UI on item pickup. Extremely impure.
 function onItemPickup(item, pickupTechLevel, newFlavorText) {
@@ -157,7 +158,7 @@ const App = () => {
     // Ignores repeated events caused by pressing a key down continuously.
     if (e.repeat) {
       return
-    } else if (isGameOver === false) {
+    } else if (isGameOver === false && isCaptainDefeated === false) {
       // Recognizes WASD movement and sends it to the movement handler.
       switch (e.code) {
         case 'KeyW': 
@@ -265,6 +266,9 @@ const App = () => {
             // Enemy object is replaced by an item.
             return itemDrop(tile.row, tile.col, tile.rgb, tile.enemy, projectileTechLvl, meleeTechLvl, armorTechLvl)
           } else {
+            if (tile.enemy === 'captain') {
+              isCaptainDefeated = true
+            }
             // Enemy object is replaced by terrain.
             return terrainObject(playerRow + x, playerCol + y, tile.rgb)
           }
@@ -273,14 +277,15 @@ const App = () => {
         }
       }))
       setGrid(newGrid)
-      // As the player hasn't actually switched tiles, the useEffect
-      // needs to be told to trigger directly (see its dependencies
-      // for more information).
-      setClearTile(clearTile + 1)
 
       if(playerHP <= 0) {
         isGameOver = true
       }
+
+      // As the player hasn't actually switched tiles, the useEffect
+      // needs to be told to trigger directly (see its dependencies
+      // for more information).
+      setClearTile(clearTile + 1)
 
       return
 
@@ -304,11 +309,11 @@ const App = () => {
       // UI info message is updated to show enemy HP left and much damage was causad to player.
       infoMessage =<div><p>Enemy has {grid[playerRow + x][playerCol + y].hp} HP left and does {damageDone} HP damage to you.</p></div>
       
-      setClearTile(clearTile + 1)
-
       if(playerHP <= 0) {
         isGameOver = true
       }
+
+      setClearTile(clearTile + 1)
 
       return
     }
@@ -316,6 +321,12 @@ const App = () => {
 
   return (
     <div style={{display: 'flex', flexDirection: 'row'}}>
+      <GameOver
+        display={isGameOver ? 'block' : 'none'}
+      />
+      <GameWon 
+        display={isCaptainDefeated ? 'block' : 'none'}
+      />
       <UI 
         playerHP={playerHP}
         playerMaxHP={playerMaxHP}

@@ -18,7 +18,7 @@ function obstacleObject(row, col) {
 
 // Randomly turns some peripheral grid objects into
 // obstacles, to make the terrain look more "random"
-// and less like a big square.
+// and less like a big rectangle.
 export function gridBordersPass(grid) {
 
   let newGrid = grid
